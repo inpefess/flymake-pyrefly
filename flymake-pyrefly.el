@@ -1,5 +1,15 @@
-;;; flymake-pyrefly.el --- A Pyrefly Flymake backend. -*- lexical-binding: t; -*-
-;; Copyright (C) 2025  Boris Shminke
+;;; flymake-pyrefly.el --- A Pyrefly Flymake backend  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2025 Free Software Foundation, Inc.
+;; Author: Boris Shminke <boris@shminke.com>
+;; Maintainer: Boris Shminke <boris@shminke.com>
+;; Created: 29 Jun 2025
+;; Version: 1.0.0
+;; Keywords: tools, languages
+;; URL: https://github.com/inpefess/flymake-pyrefly
+;; Package-Requires: ((emacs "30.1"))
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,13 +24,10 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-;;; Version: 0.0.1
-
 ;;; Commentary:
 ;; Based on the annotated example from Flymake info.
 ;; Usage:
 ;;   (use-package flymake-pyrefly
-;;     :vc (:url "https://github.com/inpefess/flymake-pyrefly.git")
 ;;     :hook (python-mode . pyrefly-setup-flymake-backend))
 
 ;;; Code:

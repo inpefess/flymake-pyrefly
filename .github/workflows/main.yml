@@ -3,16 +3,26 @@ on: [push]
 jobs:
   test-with-emacs:
     runs-on: ubuntu-latest
-    container:
-      image: inpefess/multi-emacs-with-python:2025.07.03
+    strategy:
+      fail-fast: true
+      matrix:
+        emacs_version: [26.1, 26.3, 27.2, 28.2, 29.4, 30.1]
+
     steps:
+      - name: Setup Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: ${{ matrix.emacs_version }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Install Pyrefly
         run: |
-          /emacs-tests/.venv/bin/pip install pyrefly
+          python -m venv .venv
+          .venv/bin/pip install pyrefly
       - name: Test with Emacs
         run: |
-          export EMACS=/emacs-tests/emacs-30.1/.local/bin/emacs
-          export PYREFLY_BIN_DIR=/emacs-tests/.venv/bin
+          export PYREFLY_BIN_DIR=$(pwd)/.venv/bin
           ./run-tests.sh
