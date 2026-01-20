@@ -1,0 +1,69 @@
+\input texinfo    @c -*- texinfo -*-
+@c %**start of header
+@setfilename flymake-pyrefly.info
+@settitle Flymake Pyrefly
+@documentencoding UTF-8
+@documentlanguage en
+@c %**end of header
+
+@dircategory Misc
+@direntry
+* (flymake-pyrefly).             .
+@end direntry
+
+@finalout
+@titlepage
+@title Flymake Pyrefly
+@author Boris Shminke
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top 
+
+@uref{https://elpa.nongnu.org/nongnu/flymake-pyrefly.html, https://elpa.nongnu.org/nongnu/flymake-pyrefly.svg} @uref{https://codecov.io/gh/inpefess/flymake-pyrefly, https://codecov.io/gh/inpefess/flymake-pyrefly/graph/badge.svg?token=ZFO5KJAY2I}
+
+@end ifnottex
+
+@menu
+* flymake-pyrefly::
+* How to install::
+@end menu
+
+@node flymake-pyrefly
+@chapter flymake-pyrefly
+
+@uref{https://pyrefly.org/, Pyrefly} is a fast Python type checker written in Rust.
+flymake-pyrefly is a Pyrefly backend for @ref{Top, flymake} that helps you to
+see typing errors in your Python files.
+
+@node How to install
+@chapter How to install
+
+flymake-pyrefly is available on @uref{https://elpa.nongnu.org/, nonGNU Emacs Lisp Package Archive},
+so you can install it by @code{M-x package-install RET flymake-pyrefly RET}.
+
+To add flymake-pyrefly to the list of Flymake backends when editing
+Python files (notice the difference if you use eglot):
+
+@lisp
+(add-hook 'python-base-mode-hook #'pyrefly-setup-flymake-backend)
+
+;; alternatively, with use-package
+(use-package flymake-pyrefly
+  :hook (python-base-mode . pyrefly-setup-flymake-backend))
+
+;; or if you use eglot
+(add-hook 'eglot-managed-mode-hook #'pyrefly-setup-flymake-backend)
+
+;; if you use eglot and use-package
+(use-package flymake-pyrefly
+  :hook (eglot-managed-mode . pyrefly-setup-flymake-backend))
+@end lisp
+
+If Pyrefly binary is not visible from current Python virtual
+environment, you can set it through the interface @code{M-x customize-variable RET flymake-pyrefly-binary-file RET}.
+
+@bye
